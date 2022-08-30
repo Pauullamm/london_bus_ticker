@@ -9,10 +9,11 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/bus')
-def api_get():
+@app.route('/bus', methods=['POST'])
+def bus():
     r=requests.get('https://api.tfl.gov.uk/Mode/bus/Arrivals')
-    return render_template('search.html', buses=r.json()[0])
+    bus_data = r.json()
+    return render_template('index.html', buses=bus_data[0])
 
 if __name__ == '__main__':
     app.run(debug=True)
