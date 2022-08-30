@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="/static/styles.css"> 
 </head>
 <body>
-    <h1>This is some text</h1>
-    <button class="searchbutton" type="button">Press for tfl deets</button>
+    <h1>London Bus Ticker</h1>
+    <form action="{{url_for('bus')}}" method="POST">
+        <label for="stopname" >Enter Bus Stop Name:</label>
+        <input id="stopname" type="text">
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    {%for bus in buses %}
+        {% if bus['stationName'] is stopname %} 
+        <!-- TODO: figure out how to extract form input to backend and return it as stopname -->
+        <p>{bus}</p>
+        {% endif %}
+    {% endfor %}
 </body>
 </html>
